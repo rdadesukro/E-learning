@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.e_learning"
+    android:installLocation="preferExternal">
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--
+     The following two permissions are not required to use
+     Google Maps Android API v2, but are recommended.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <application
+        android:name=".app.AppController"
+        android:allowBackup="true"
+
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".menu_sekolah"></activity>
+        <activity android:name=".menu_lupa_password" />
+        <activity android:name=".menu_quiz_2" />
+        <activity android:name=".menu_quiz" />
+        <activity android:name=".menu_detail_siswa" />
+        <activity android:name=".tes_up" />
+        <activity android:name=".menu_input_profil" />
+        <activity android:name=".menu_nilai" />
+        <activity android:name=".menu_profil" />
+        <activity android:name=".menu_siswa" />
+        <activity android:name=".menu_mapel" />
+        <activity android:name=".menu_register" />
+        <activity android:name=".menu_quiz_1" />
+        <activity android:name=".menu_input_profil_guru" />
+        <activity android:name=".menu_materi" />
+        <activity android:name=".menu_login_guru" />
+        <activity android:name=".menu_materi_A" />
+        <activity android:name=".menu_utama" />
+        <activity android:name=".menu_login" />
+        <activity android:name=".PDFActivity" />
+        <activity android:name=".menu_login_siswa">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

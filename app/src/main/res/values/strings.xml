@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">E-Learning</string>
+
+    <string-array name="jns">
+        <item>Jenis Kelamin</item>
+        <item>LK</item>
+        <item>PR</item>
+        <item>Tidak tahu</item>
+
+    </string-array>
+</resources>
