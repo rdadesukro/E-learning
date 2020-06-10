@@ -15,12 +15,14 @@ public class mapel_2 extends SQLiteOpenHelper {
     public mapel_2(Context context) {
         super(context, DB_NAME, null, 1);
         // TODO Auto-generated constructor stub
+        //ade
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE IF NOT EXISTS tbl_soal1(id INTEGER PRIMARY KEY AUTOINCREMENT, soal TEXT, pil_a TEXT, pil_b TEXT, pil_c TEXT, jwban INTEGER, img BLOB)";
         db.execSQL(sql);
+
 
         ContentValues values = new ContentValues();
         values.put("soal", "Nama komponen AC (air conditioners) yang berputar menekan gas refrigerant sehingga temperaturnya meningkat adalah… ?");
