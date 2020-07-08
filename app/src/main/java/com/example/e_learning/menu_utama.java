@@ -249,6 +249,7 @@ public class menu_utama extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
 
         btn_profil.setOnClickListener(new View.OnClickListener() {
             @Override
