@@ -1,0 +1,16 @@
+/* CSS Document */
+
+		.search {
+			padding:8px;
+			background:#FFFFFF;
+			border:0px solid #dbdbdb;
+		}
+		.button {
+			position:relative;
+			padding:6px 15px;
+			left:5px;
+			border:2px solid #53bd84;
+			background-color:#53bd84;
+			color:#fafafa;
+		}
+		

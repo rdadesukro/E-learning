@@ -243,6 +243,7 @@ public class menu_register extends AppCompatActivity {
         return validate;
     }
 
+
 //    @Override
 //    protected void onDestroy() {
 //        super.onDestroy();

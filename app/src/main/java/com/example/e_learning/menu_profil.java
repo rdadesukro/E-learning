@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -347,5 +348,18 @@ public class menu_profil extends AppCompatActivity {
 
 
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
 
+            Intent intent = new Intent(getApplicationContext(), menu_utama.class);
+            startActivity(intent);
+
+            return true;
+        } else {
+
+
+            return super.onKeyDown(keyCode, event);
+        }
+    }
 }

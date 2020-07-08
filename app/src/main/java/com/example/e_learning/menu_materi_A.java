@@ -15,6 +15,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,9 @@ public class menu_materi_A extends AppCompatActivity {
     public final static String TAG_userneme = "username";
     public final static String TAG_ID = "nis";
     ImageView hapus;
+    GridView myGridView;
+
+    ProgressBar myProgressBar;
     public final static String TAG_level = "level";
     public static final String my_shared_preferences = "my_shared_preferences";
     Boolean session = false;
@@ -162,7 +166,7 @@ if (siswa.getText().equals("siswa")){
 
                                                         if (success == 1) {
                                                             Log.e("v Add", jObj.toString());
-
+                                                           // new JSONDownloader(menu_materi_A.this).retrieve(myGridView,myProgressBar);
                                                             //    Toast.makeText(menu_detail_laporan.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
                                                             Toast.makeText(menu_materi_A.this,"SUKSES HAPUS DATA",Toast.LENGTH_LONG).show();
                                                             //  Intent i = new Intent(menu_detail_laporan.this, menu_laporan_masuk.class);
@@ -287,7 +291,7 @@ if (siswa.getText().equals("siswa")){
                         public void onError(ANError error) {
                             error.printStackTrace();
                             myProgressBar.setVisibility(View.GONE);
-                            Toast.makeText(c, "UNSUCCESSFUL :  ERROR IS : "+error.getMessage(), Toast.LENGTH_LONG).show();
+                         //   Toast.makeText(c, "UNSUCCESSFUL :  ERROR IS : "+error.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
         }
@@ -308,7 +312,7 @@ if (siswa.getText().equals("siswa")){
         username = sharedpreferences.getString(TAG_userneme, null);
         level = sharedpreferences.getString(TAG_level, null);
         siswa.setText(level);
-        Toast.makeText(this, "UNSUCCESSFUL :  ERROR IS : "+level, Toast.LENGTH_LONG).show();
+     //   Toast.makeText(this, "UNSUCCESSFUL :  ERROR IS : "+level, Toast.LENGTH_LONG).show();
 
 
 
@@ -361,13 +365,27 @@ if (siswa.getText().equals("siswa")){
     public  void  onResume() {
 
         super.onResume();
-        final GridView myGridView= findViewById(R.id.myGridView);
+         myGridView= findViewById(R.id.myGridView);
         id_apel = (TextView) findViewById(R.id.txt_nama);
         FloatingActionButton btnRetrieve = (FloatingActionButton) findViewById(R.id.downloadBtn);
         final ProgressBar myProgressBar= findViewById(R.id.myProgressBar);
         siswa = (TextView) findViewById(R.id.txt_siswa);
         new JSONDownloader(menu_materi_A.this).retrieve(myGridView,myProgressBar);
 
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+            Intent intent = new Intent(getApplicationContext(), menu_mapel.class);
+            startActivity(intent);
+
+            return true;
+        } else {
+
+
+            return super.onKeyDown(keyCode, event);
+        }
     }
 
 }

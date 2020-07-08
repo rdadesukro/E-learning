@@ -16,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -109,6 +110,20 @@ public class menu_nilai extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+            Intent intent = new Intent(getApplicationContext(), menu_utama.class);
+            startActivity(intent);
+
+            return true;
+        } else {
+
+
+            return super.onKeyDown(keyCode, event);
+        }
     }
 
 }

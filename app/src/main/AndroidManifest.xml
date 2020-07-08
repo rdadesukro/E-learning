@@ -33,7 +33,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".menu_add_data"></activity>
+        <activity android:name=".menu_add_data"
+            android:theme="@style/AppTheme"></activity>
         <activity android:name=".menu_sekolah"
             android:parentActivityName=".menu_utama"/>
         <activity android:name=".menu_lupa_password" />

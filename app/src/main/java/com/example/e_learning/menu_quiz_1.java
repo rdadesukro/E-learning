@@ -13,6 +13,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -509,6 +510,19 @@ public class menu_quiz_1 extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(stringRequest, tag_json_obj);
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
 
+            Intent intent = new Intent(getApplicationContext(), menu_quiz.class);
+            startActivity(intent);
+
+            return true;
+        } else {
+
+
+            return super.onKeyDown(keyCode, event);
+        }
+    }
 
 }
