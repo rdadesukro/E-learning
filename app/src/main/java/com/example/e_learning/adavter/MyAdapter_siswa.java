@@ -43,8 +43,8 @@ public class MyAdapter_siswa extends RecyclerView.Adapter<MyHolder_data> {
         final data_mapel s= objekDatas.get(position);
          holder.nama.setText(s.getNama());
         holder.nis.setText(s.getNis());
-        holder.kls.setText(s.getKls());
-        PicassoClient.downloadImage( c,"http://192.168.43.48/e-learning/foto/" + s.getFot_Sis(), holder.foto );
+        holder.kls_new.setText(s.getKls());
+        PicassoClient.downloadImage( c,"http://192.168.56.1/e-learning/foto/" + s.getFot_Sis(), holder.foto );
 
 
 

@@ -79,7 +79,7 @@ public class menu_input_profil_guru extends AppCompatActivity {
     TextView tgl2;
     /* 10.0.2.2 adalah IP Address localhost Emulator Android Studio. Ganti IP Address tetgl_lahirebut dengan
     IP Address Laptop jika di RUN di HP/Genymotion. HP/Genymotion dan Laptop harus 1 jaringan! */
-    private String UPLOAD_URL = "http://192.168.43.48/TASRIF_anak/upload_tes.php";
+    private String UPLOAD_URL = "http://192.168.56.1/TASRIF_anak/upload_tes.php";
 
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
@@ -200,7 +200,7 @@ public class menu_input_profil_guru extends AppCompatActivity {
         tgl.setText(b.getCharSequence("ttl"));
         v_kls.setText(b.getCharSequence("mapel"));
         v_jenis.setText(b.getCharSequence("jl"));
-        PicassoClient.downloadImage( this,"http://192.168.43.48/e-learning/foto/"+b.getCharSequence("foto"),imageView );
+        PicassoClient.downloadImage( this,"http://192.168.56.1/e-learning/foto/"+b.getCharSequence("foto"),imageView );
         //  imageView.setImageDrawable(Drawable.createFromPath("foto"));
         if (v_jenis.getText().equals("LK")){
             v_jns.setSelection(1);
@@ -213,7 +213,7 @@ public class menu_input_profil_guru extends AppCompatActivity {
 
 
 
-        // PicassoClient.downloadImage( this,"http://192.168.43.48/TASRIF_anak/"+imageurl,imageView );
+        // PicassoClient.downloadImage( this,"http://192.168.56.1/TASRIF_anak/"+imageurl,imageView );
         // PicassoClient.downloadImage(this, imageurl,foto);
         //  v_jenis.setText(jenkel);
 

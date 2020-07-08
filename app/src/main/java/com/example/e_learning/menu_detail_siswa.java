@@ -201,7 +201,7 @@ public class menu_detail_siswa extends AppCompatActivity {
 
                                 kls.setText(kl);
 
-                                new DownloadImagesTask().execute("http://192.168.43.48/e-learning/foto/"+person.getString("foto"));
+                                new DownloadImagesTask().execute("http://192.168.56.1/e-learning/foto/"+person.getString("foto"));
 
 
 

@@ -41,7 +41,7 @@ public class MyAdapter_mapel extends RecyclerView.Adapter<MyHolder_data> {
 
         final data_mapel s= objekDatas.get(position);
          holder.mapel.setText(s.getMapel());
-        PicassoClient.downloadImage( c,"http://192.168.43.48/e-learning/foto/" + s.getFoto(), holder.foto );
+        PicassoClient.downloadImage( c,"http://192.168.56.1/e-learning/foto/" + s.getFoto(), holder.foto );
 
 
 

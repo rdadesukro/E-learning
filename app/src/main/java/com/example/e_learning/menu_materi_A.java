@@ -1,5 +1,6 @@
 package com.example.e_learning;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -58,6 +59,7 @@ public class menu_materi_A extends AppCompatActivity {
     public final static String TAG_level = "level";
     public static final String my_shared_preferences = "my_shared_preferences";
     Boolean session = false;
+    FloatingActionButton add;
     String tag_json_obj = "json_obj_req";
     String id,level,username;
     TextView id_apel,siswa;
@@ -225,8 +227,8 @@ if (siswa.getText().equals("siswa")){
     Our HTTP Client
     */
     public class JSONDownloader {
-       private static final String PDF_SITE_URL1="http://192.168.43.48/e-learning/?id_mapel=";
-        private static final String PDF_SITE_URL2="http://192.168.43.48/e-learning/pdf/";
+       private static final String PDF_SITE_URL1="http://192.168.56.1/e-learning/?id_mapel=";
+        private static final String PDF_SITE_URL2="http://192.168.56.1/e-learning/pdf/";
 
        String s= (String) id_apel.getText();
         private final String B = AppConfig.PDF_SITE_URL+s;
@@ -292,6 +294,7 @@ if (siswa.getText().equals("siswa")){
     }
 
 
+    @SuppressLint("RestrictedApi")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_materi1);
@@ -308,6 +311,12 @@ if (siswa.getText().equals("siswa")){
         Toast.makeText(this, "UNSUCCESSFUL :  ERROR IS : "+level, Toast.LENGTH_LONG).show();
 
 
+
+
+        add=   (FloatingActionButton) findViewById(R.id.btn_Add);
+        if (level.equals("siswa")){
+            add.setVisibility(View.GONE);
+        }
         //lvl.setText(level);
         //id_user.setText(id);
         FloatingActionButton btnRetrieve = (FloatingActionButton) findViewById(R.id.downloadBtn);
@@ -323,6 +332,19 @@ if (siswa.getText().equals("siswa")){
             }
         });
 
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), menu_add_data.class);
+                Bundle b = new Bundle();
+
+
+                b.putString("id_mapel", id_apel.getText().toString());
+                intent.putExtras(b);
+                startActivity(intent);
+
+            }
+        });
 
 
     }

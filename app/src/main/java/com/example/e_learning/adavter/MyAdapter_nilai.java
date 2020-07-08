@@ -51,7 +51,7 @@ public class MyAdapter_nilai extends RecyclerView.Adapter<MyHolder_data> {
         }
         holder.kls.setText(s.getKls());
         holder.nama.setText(s.getNama());
-         PicassoClient.downloadImage( c,"http://192.168.43.48/e-learning/foto/" + s.getFoto(), holder.foto );
+         PicassoClient.downloadImage( c,"http://192.168.56.1/e-learning/foto/" + s.getFoto(), holder.foto );
 
 
 

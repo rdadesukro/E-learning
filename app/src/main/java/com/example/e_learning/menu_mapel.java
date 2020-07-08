@@ -100,9 +100,9 @@ public class menu_mapel extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         lvl.setText(b.getCharSequence("level"));
 
-        if (lvl.getText().equals("siswa")){
-            add.setVisibility(View.GONE);
-        }
+//        if (lvl.getText().equals("siswa")){
+//            add.setVisibility(View.GONE);
+//        }
         RequestRunTimePermission();
         final RecyclerView rv = (RecyclerView) findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -159,7 +159,7 @@ public class menu_mapel extends AppCompatActivity {
         id_mapel = (TextView) promptView.findViewById(R.id.txt_id);
 
         btn_pdf = (Button) promptView.findViewById(R.id.btn_pdf);
-        btn_foto = (Button) promptView.findViewById(R.id.btn_foto);
+       // btn_foto = (Button) promptView.findViewById(R.id.btn_foto);
         imageView = (ImageView) promptView.findViewById(R.id.imagetoolbar);
 
         btn_pdf.setOnClickListener(new View.OnClickListener() {

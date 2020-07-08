@@ -17,7 +17,7 @@ public class MyHolder_data extends RecyclerView.ViewHolder implements View.OnCli
 
 
 
-    public TextView nilai;
+    public TextView nilai,kls_new;
     public ImageView foto;
 
     ItemClickListener itemClickListener;
@@ -32,6 +32,7 @@ public class MyHolder_data extends RecyclerView.ViewHolder implements View.OnCli
         nis= (TextView) itemView.findViewById(R.id.txt_nis);
         nilai= (TextView) itemView.findViewById(R.id.txt_nilai);
         kls= (TextView) itemView.findViewById(R.id.txt_kls);
+        kls_new= (TextView) itemView.findViewById(R.id.txt_nilai);
         foto = (ImageView) itemView.findViewById(R.id.img_bg);
         itemView.setOnClickListener(this);
 

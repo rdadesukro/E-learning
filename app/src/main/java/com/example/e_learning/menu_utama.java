@@ -441,7 +441,7 @@ public class menu_utama extends AppCompatActivity {
 
 
 
-                                new DownloadImagesTask().execute("http://192.168.43.48/e-learning/foto/"+person.getString("foto"));
+                                new DownloadImagesTask().execute("http://192.168.56.1/e-learning/foto/"+person.getString("foto"));
 
 
 
@@ -505,7 +505,7 @@ public class menu_utama extends AppCompatActivity {
 
 
 
-                                new DownloadImagesTask().execute("http://192.168.43.48/e-learning/foto/"+person.getString("foto"));
+                                new DownloadImagesTask().execute("http://192.168.56.1/e-learning/foto/"+person.getString("foto"));
 
 
 
@@ -562,10 +562,10 @@ public class menu_utama extends AppCompatActivity {
 
                             }
 
-                            imageLoader.get("http://192.168.43.48/e-info-siswa/foto/"+url, ImageLoader.getImageListener(previewImage
+                            imageLoader.get("http://192.168.56.1/e-info-siswa/foto/"+url, ImageLoader.getImageListener(previewImage
                                     ,0,android.R.drawable
                                             .ic_dialog_alert));
-                            previewImage.setImageUrl("http://192.168.43.48/e-info-siswa/foto/"+url, imageLoader);
+                            previewImage.setImageUrl("http://192.168.56.1/e-info-siswa/foto/"+url, imageLoader);
 
 
                             // ImageLoader class instance
