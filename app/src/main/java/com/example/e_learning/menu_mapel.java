@@ -145,129 +145,129 @@ public class menu_mapel extends AppCompatActivity {
     protected void showInputDialog() {
 
         // get prompts.xml view
-        LayoutInflater layoutInflater = LayoutInflater.from(menu_mapel.this);
-        View promptView = layoutInflater.inflate(R.layout.input_profil, null);
-
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(menu_mapel.this);
-        alertDialogBuilder.setTitle("TAMBAH DATA");
-       // alertDialogBuilder.setIcon(R.drawable.bpbd);
-        alertDialogBuilder.setView(promptView);
-
-
-        bab = (EditText) promptView.findViewById(R.id.ipt_bab);
-     //   pdf = (EditText) promptView.findViewById(R.id.ipt_pdf);
-        spi_mapel = (Spinner) promptView.findViewById(R.id.spi_mapel);
-
-        id_mapel = (TextView) promptView.findViewById(R.id.txt_id);
-
-        btn_pdf = (Button) promptView.findViewById(R.id.btn_pdf);
-       // btn_foto = (Button) promptView.findViewById(R.id.btn_foto);
-        imageView = (ImageView) promptView.findViewById(R.id.imagetoolbar);
-
-        btn_pdf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                // PDF selection code start from here .
-                // Creating intent object.
-                Intent intent = new Intent();
-
-                // Setting up default file pickup time as PDF.
-                intent.setType("application/pdf");
-
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-
-                startActivityForResult(Intent.createChooser(intent, "Select Pdf"), PDF_REQ_CODE);
-            }
-        });
-
-        String[] bencana = new String[]{
-                "Pilih Mata Pelajaran...",
-                "A",
-                "B"
-
-        };
-        final List<String> bencanaList = new ArrayList<>( Arrays.asList(bencana));
-
-        // Initializing an ArrayAdapter
-        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
-                this,R.layout.spinner_item,bencanaList){
-            @Override
-            public boolean isEnabled(int position){
-                if(position == 0)
-                {
-                    // Disable the first item from Spinner
-                    // First item will be use for hint
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                if(position == 0){
-                    // Set the hint text color gray
-                    tv.setTextColor( Color.parseColor("#673AB7"));
-                }
-                else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };
-        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
-        spi_mapel.setAdapter(spinnerArrayAdapter);
-
-        spi_mapel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItemText = (String) parent.getItemAtPosition(position);
-                // If user change the default selection
-                // First item is disable and it is used for hint
-                if(position > 0){
-                    // Notify the selected item text
-                    Toast.makeText
-                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
-                            .show();
-                    if (selectedItemText.equals("A")){
-                        id_mapel.setText("1");
-                    }else {
-                        id_mapel.setText("2");
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
-
-        alertDialogBuilder.setCancelable(false)
-                .setPositiveButton("SIMPAN", new DialogInterface.OnClickListener() {
-                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        PdfUploadFunction();
-                    }
-                })
-                .setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-        // create an alert dialog
-        AlertDialog alert = alertDialogBuilder.create();
-        alert.show();
+//        LayoutInflater layoutInflater = LayoutInflater.from(menu_mapel.this);
+//        View promptView = layoutInflater.inflate(R.layout.input_profil, null);
+//
+//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(menu_mapel.this);
+//        alertDialogBuilder.setTitle("TAMBAH DATA");
+//       // alertDialogBuilder.setIcon(R.drawable.bpbd);
+//        alertDialogBuilder.setView(promptView);
+//
+//
+//        bab = (EditText) promptView.findViewById(R.id.ipt_bab);
+//     //   pdf = (EditText) promptView.findViewById(R.id.ipt_pdf);
+//        spi_mapel = (Spinner) promptView.findViewById(R.id.spi_mapel);
+//
+//        id_mapel = (TextView) promptView.findViewById(R.id.txt_id);
+//
+//        btn_pdf = (Button) promptView.findViewById(R.id.btn_pdf);
+//       // btn_foto = (Button) promptView.findViewById(R.id.btn_foto);
+//        imageView = (ImageView) promptView.findViewById(R.id.imagetoolbar);
+//
+//        btn_pdf.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                // PDF selection code start from here .
+//                // Creating intent object.
+//                Intent intent = new Intent();
+//
+//                // Setting up default file pickup time as PDF.
+//                intent.setType("application/pdf");
+//
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//
+//                startActivityForResult(Intent.createChooser(intent, "Select Pdf"), PDF_REQ_CODE);
+//            }
+//        });
+//
+//        String[] bencana = new String[]{
+//                "Pilih Mata Pelajaran...",
+//                "A",
+//                "B"
+//
+//        };
+//        final List<String> bencanaList = new ArrayList<>( Arrays.asList(bencana));
+//
+//        // Initializing an ArrayAdapter
+//        final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
+//                this,R.layout.spinner_item,bencanaList){
+//            @Override
+//            public boolean isEnabled(int position){
+//                if(position == 0)
+//                {
+//                    // Disable the first item from Spinner
+//                    // First item will be use for hint
+//                    return false;
+//                }
+//                else
+//                {
+//                    return true;
+//                }
+//            }
+//            @Override
+//            public View getDropDownView(int position, View convertView,
+//                                        ViewGroup parent) {
+//                View view = super.getDropDownView(position, convertView, parent);
+//                TextView tv = (TextView) view;
+//                if(position == 0){
+//                    // Set the hint text color gray
+//                    tv.setTextColor( Color.parseColor("#673AB7"));
+//                }
+//                else {
+//                    tv.setTextColor(Color.BLACK);
+//                }
+//                return view;
+//            }
+//        };
+//        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+//        spi_mapel.setAdapter(spinnerArrayAdapter);
+//
+//        spi_mapel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String selectedItemText = (String) parent.getItemAtPosition(position);
+//                // If user change the default selection
+//                // First item is disable and it is used for hint
+//                if(position > 0){
+//                    // Notify the selected item text
+//                    Toast.makeText
+//                            (getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT)
+//                            .show();
+//                    if (selectedItemText.equals("A")){
+//                        id_mapel.setText("1");
+//                    }else {
+//                        id_mapel.setText("2");
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
+//
+//
+//
+//        alertDialogBuilder.setCancelable(false)
+//                .setPositiveButton("SIMPAN", new DialogInterface.OnClickListener() {
+//                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+//                    public void onClick(DialogInterface dialog, int id) {
+//
+//                        PdfUploadFunction();
+//                    }
+//                })
+//                .setNegativeButton("Cancel",
+//                        new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int id) {
+//                                dialog.cancel();
+//                            }
+//                        });
+//
+//        // create an alert dialog
+//        AlertDialog alert = alertDialogBuilder.create();
+//        alert.show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

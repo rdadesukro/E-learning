@@ -89,7 +89,7 @@ public class menu_profil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_profil);
-        nama = (TextView) findViewById(R.id.txt_nama);
+        nama = (TextView) findViewById(R.id.nama);
         nis = (TextView) findViewById(R.id.txt_nis);
         agama = (TextView) findViewById(R.id.txt_agama);
         alamat = (TextView) findViewById(R.id.txt_almt);
@@ -115,7 +115,7 @@ public class menu_profil extends AppCompatActivity {
         if (lvl.getText().equals("guru")){
             data_guru();
             ganti.setText("Mapel");
-            add.setVisibility(View.GONE);
+          //  add.setVisibility(View.GONE);
 
         }else {
             data();
@@ -126,7 +126,29 @@ public class menu_profil extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if (lvl.getText().equals("guru")){
 
+                    Intent intent = new Intent(getApplicationContext(), menu_input_profil_guru.class);
+                    Bundle b = new Bundle();
+
+                    //Menyisipkan tipe data String ke dalam obyek bundle
+                    b.putString("nis", nis.getText().toString());
+                    b.putString("nama", nama.getText().toString());
+                    b.putString("jl", jl.getText().toString());
+                    b.putString("ttl", ttl.getText().toString());
+                    b.putString("alamat", alamat.getText().toString());
+                    b.putString("agama", agama.getText().toString());
+                    //  b.putString("kls", kls.getText().toString());
+                    b.putString("kls", kls.getText().toString());
+                    b.putString("foto", t_foto.getText().toString());
+
+
+                    // b.putString("kls", txt_kls.getText().toString());
+                    // b.putString("vidio", txtvidio.getText().toString());
+                    intent.putExtras(b);
+                    startActivity(intent);
+
+                }else {
                     Intent intent = new Intent(getApplicationContext(), menu_input_profil.class);
                     Bundle b = new Bundle();
 
@@ -137,7 +159,7 @@ public class menu_profil extends AppCompatActivity {
                     b.putString("ttl", ttl.getText().toString());
                     b.putString("alamat", alamat.getText().toString());
                     b.putString("agama", agama.getText().toString());
-                  //  b.putString("kls", kls.getText().toString());
+                    //  b.putString("kls", kls.getText().toString());
                     b.putString("kls", kls.getText().toString());
                     b.putString("foto", t_foto.getText().toString());
 
@@ -146,6 +168,10 @@ public class menu_profil extends AppCompatActivity {
                     // b.putString("vidio", txtvidio.getText().toString());
                     intent.putExtras(b);
                     startActivity(intent);
+
+                }
+
+
 
 
 

@@ -110,7 +110,22 @@ public class menu_add_data extends AppCompatActivity {
                     alertDialog.show();
 
 
-                } else {
+                }else if (bab.getText().toString().equals("")) {
+                    Toast.makeText(menu_add_data.this, "Input BAB Mata Pelajaran", Toast.LENGTH_SHORT);
+
+
+                    AlertDialog alertDialog = new AlertDialog.Builder(menu_add_data.this).create();
+                    alertDialog.setTitle("Alert");
+                    alertDialog.setMessage("Input BAB Mata Pelajaran!");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
+                else {
                     final AlertDialog pd_new = new AlertDialog.Builder(menu_add_data.this).create();
 
                     pd_new.setTitle("Simpan Data");

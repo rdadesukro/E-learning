@@ -250,70 +250,137 @@ public class menu_input_profil extends AppCompatActivity {
     }
 
     private void uploadImage() {
-        //menampilkan progress dialog
-        final ProgressDialog loading = ProgressDialog.show(this, "Uploading...", "Please wait...", false, false);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.Up_profil,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.e(TAG, "Response: " + response.toString());
+        if (decoded==null){
+            final ProgressDialog loading = ProgressDialog.show(this, "Uploading...", "Please wait...", false, false);
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.edit,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.e(TAG, "Response: " + response.toString());
 
-                        try {
-                            JSONObject jObj = new JSONObject(response);
-                            success = jObj.getInt(TAG_SUCCESS);
+                            try {
+                                JSONObject jObj = new JSONObject(response);
+                                success = jObj.getInt(TAG_SUCCESS);
 
-                            if (success == 1) {
-                                Log.e("v Add", jObj.toString());
+                                if (success == 1) {
+                                    Log.e("v Add", jObj.toString());
 
-                                Toast.makeText(menu_input_profil.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
-                                Toast.makeText(menu_input_profil.this,"SUKSES UPLOUD DATA",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(menu_input_profil.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(menu_input_profil.this,"SUKSES UPLOUD DATA",Toast.LENGTH_LONG).show();
 
 
-                            } else {
-                                Toast.makeText(menu_input_profil.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(menu_input_profil.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+
+                            //menghilangkan progress dialog
+                            loading.dismiss();
                         }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            //menghilangkan progress dialog
+                            loading.dismiss();
 
-                        //menghilangkan progress dialog
-                        loading.dismiss();
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //menghilangkan progress dialog
-                        loading.dismiss();
+                            //menampilkan toast
+                            Toast.makeText(menu_input_profil.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
+                            Log.e(TAG, error.getMessage().toString());
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    //membuat parametetgl_lahir
+                    Map<String, String> params = new HashMap<String, String>();
 
-                        //menampilkan toast
-                        Toast.makeText(menu_input_profil.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
-                        Log.e(TAG, error.getMessage().toString());
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() {
-                //membuat parametetgl_lahir
-                Map<String, String> params = new HashMap<String, String>();
+                    //menambah parameter yang di kirim ke web servis
+                    params.put(KEY_NAME, v_nama.getText().toString().trim());
+                    params.put(KEY_KELAS, v_kls.getText().toString().trim());
+                    params.put(KEY_ID, id_txt.getText().toString().trim());
+                    params.put(KEY_AGAMA, v_agama.getText().toString().trim());
+                    //params.put(KEY_BERAT, v_berat.getText().toString().trim());
+                    // params.put(KEY_PANJANG, v_panajang.getText().toString().trim());
+                    params.put(KEY_JENIS, v_jns.getSelectedItem().toString().trim());
+                    params.put(KEY_TTL, tgl.getText().toString().trim());
+                    params.put(KEY_ALAMAT, v_alamat.getText().toString().trim());
+                    //kembali ke parametetgl_lahir
+                    Log.e(TAG, "" + params);
+                    return params;
+                }
+            };
 
-                //menambah parameter yang di kirim ke web servis
-                params.put(KEY_IMAGE, getStringImage(decoded));
-                params.put(KEY_NAME, v_nama.getText().toString().trim());
-                params.put(KEY_KELAS, v_kls.getText().toString().trim());
-                params.put(KEY_ID, id_txt.getText().toString().trim());
-                params.put(KEY_AGAMA, v_agama.getText().toString().trim());
-                //params.put(KEY_BERAT, v_berat.getText().toString().trim());
-                // params.put(KEY_PANJANG, v_panajang.getText().toString().trim());
-                params.put(KEY_JENIS, v_jns.getSelectedItem().toString().trim());
-                params.put(KEY_TTL, tgl.getText().toString().trim());
-                params.put(KEY_ALAMAT, v_alamat.getText().toString().trim());
-                //kembali ke parametetgl_lahir
-                Log.e(TAG, "" + params);
-                return params;
-            }
-        };
+            AppController.getInstance().addToRequestQueue(stringRequest, tag_json_obj);
+        }else {
+            final ProgressDialog loading = ProgressDialog.show(this, "Uploading...", "Please wait...", false, false);
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.Up_profil,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.e(TAG, "Response: " + response.toString());
 
-        AppController.getInstance().addToRequestQueue(stringRequest, tag_json_obj);
+                            try {
+                                JSONObject jObj = new JSONObject(response);
+                                success = jObj.getInt(TAG_SUCCESS);
+
+                                if (success == 1) {
+                                    Log.e("v Add", jObj.toString());
+
+                                    Toast.makeText(menu_input_profil.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(menu_input_profil.this,"SUKSES UPLOUD DATA",Toast.LENGTH_LONG).show();
+
+
+                                } else {
+                                    Toast.makeText(menu_input_profil.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            //menghilangkan progress dialog
+                            loading.dismiss();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            //menghilangkan progress dialog
+                            loading.dismiss();
+
+                            //menampilkan toast
+                            Toast.makeText(menu_input_profil.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
+                            Log.e(TAG, error.getMessage().toString());
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    //membuat parametetgl_lahir
+                    Map<String, String> params = new HashMap<String, String>();
+
+                    //menambah parameter yang di kirim ke web servis
+                    params.put(KEY_IMAGE, getStringImage(decoded));
+                    params.put(KEY_NAME, v_nama.getText().toString().trim());
+                    params.put(KEY_KELAS, v_kls.getText().toString().trim());
+                    params.put(KEY_ID, id_txt.getText().toString().trim());
+                    params.put(KEY_AGAMA, v_agama.getText().toString().trim());
+                    //params.put(KEY_BERAT, v_berat.getText().toString().trim());
+                    // params.put(KEY_PANJANG, v_panajang.getText().toString().trim());
+                    params.put(KEY_JENIS, v_jns.getSelectedItem().toString().trim());
+                    params.put(KEY_TTL, tgl.getText().toString().trim());
+                    params.put(KEY_ALAMAT, v_alamat.getText().toString().trim());
+                    //kembali ke parametetgl_lahir
+                    Log.e(TAG, "" + params);
+                    return params;
+                }
+            };
+
+            AppController.getInstance().addToRequestQueue(stringRequest, tag_json_obj);
+        }
+        Log.i("isi", "uploadImage: "+decoded);
+        //menampilkan progress dialog
+
     }
 
     private void ce() {

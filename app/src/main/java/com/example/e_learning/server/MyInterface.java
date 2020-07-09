@@ -47,11 +47,10 @@ public interface MyInterface {
     @Multipart
     @POST("edit_berkas.php")
     Call<BaseResponse> edit_file(
-            @Part("id_list_info_publik") RequestBody id_list_info_publik,
-            @Part("kategori") RequestBody kategori,
-            @Part("keterangan") RequestBody keterangan,
-            @Part("nama_file") RequestBody nama_file,
+            @Part("bab") RequestBody bab,
+            @Part("id_mapel") RequestBody id_mapel,
             @Part MultipartBody.Part file);
+
 
     @Multipart
     @POST("edit_data.php")

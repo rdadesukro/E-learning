@@ -234,9 +234,9 @@ public class menu_input_profil_guru extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if (imageView.getResources()==null)
+
                     if (decoded==null){
-                        ce();
+                        Toast.makeText(menu_input_profil_guru.this, "Belum Ubah Fptp", Toast.LENGTH_SHORT).show();
                     }else {
                         uploadImage();
                     }

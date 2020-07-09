@@ -25,6 +25,7 @@ public class AppConfig {
 	public static final String PDF_SITE_URL="http://192.168.1.71/e-learning/mp.php";
 	public static final String CEK="http://192.168.1.71/e-learning/cek.php?nis=";
 	public static final String 	Up_profil="http://192.168.1.71/e-learning/input_profil.php";
+	public static final String 	edit="http://192.168.1.71/e-learning/edit.php";
 	public static final String 	Up_profil1="http://192.168.1.71/e-learning/input_profil_foto.php";
 	public static final String 	Up_profil_guru="http://192.168.1.71/e-learning/input_profil_guru.php";
 
