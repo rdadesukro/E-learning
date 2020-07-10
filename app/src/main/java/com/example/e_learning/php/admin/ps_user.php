@@ -8,17 +8,33 @@ $password 		= md5($_POST["password"]);
 //$ttl 		= $_POST['ttl'];
 $level 			= $_POST['level'];
 $kunci 			= "null";
-$q = mysqli_query($con, "update user set
-                username        = '$username',
-            
-                password        = '$password'
-                where nis = '$nis'") or die (mysqli_error());
+//$id_mapel 			= $_POST['id_mapel'];
 
-if($q){
-    echo "<script>alert('Berhasil diedit');
-            window.location='index.php?hal=akun'</script>";
-            
-}               
+//$username_file				= $_FILES['imageUrl']['name'];
+//$temp 					= $_FILES['imageUrl']['tmp_name'];
+
+
+
+	// tipe data gambar ygdi perbolehkan
+$num_rows = mysqli_num_rows(mysqli_query($con, "SELECT * FROM user WHERE nis='".$nis."'"));
+          if ($num_rows == 0){
+		 		$query = mysqli_query($con,"INSERT INTO user VALUES('$nis',
+												'$username',
+												'$password',
+												'$level',
+												'$kunci')")or die (mysqli_error());
+
+				
+					echo "<script>alert('Berhasil disimpan');
+		            window.location='index.php?hal=akun'</script>";  
+		
+
+				
+			} else {
+				echo "<script>alert('Akun Sudah Ada');
+		            window.location='index.php?hal=akun'</script>";  
+			}
+
 
 
 		

@@ -120,7 +120,9 @@ if($nis != ""){
 						<td><?php echo "<center><img src='../foto/$row[foto]' width='120' height='120'/></center>"; ?></td>
 						
                        <td>
-						
+							<a href="<?php echo $ubah ?>" class="btn btn-success">
+							<span></span> Edit 
+						</a>
 						<a href="<?php echo $hapus ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data ini ?')">
 							<span></span> Hapus 
 						</a>
