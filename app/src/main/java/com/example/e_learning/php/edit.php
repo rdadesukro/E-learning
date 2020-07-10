@@ -3,7 +3,6 @@
 	
 	class emp{}
 	
-	$image = $_POST['image'];
 	$nis = $_POST['nis'];
 	$agama = $_POST['agama'];
 	$kelas = $_POST['kelas'];
@@ -60,9 +59,9 @@
 		
 		
 	       if ($num_rows == 0){
-		 	    $query = mysqli_query($con, "INSERT INTO siswa (foto,agama,kelas,nama,alamat,nis,ttl,jenkel) VALUES ('$tes','$agama','$kelas','$nama','$alamat','$nis','$ttl','$jenkel')");
+		 	    $query = mysqli_query($con, "INSERT INTO siswa (agama,kelas,nama,alamat,nis,ttl,jenkel) VALUES ($agama','$kelas','$nama','$alamat','$nis','$ttl','$jenkel')");
 				if ($query){
-					file_put_contents($path,base64_decode($image));
+					
 			
 			        $response = new emp();
 			        $response->success = 1;
@@ -70,42 +69,21 @@
 			        die(json_encode($response));
 				}
 			} else  {
-				if ($image==null) {
-							$query2 = mysqli_query($con, "UPDATE siswa SET kelas='$kelas',nama='$nama',agama='$agama',alamat='$alamat',ttl='$ttl',jenkel='$jenkel' WHERE nis='$nis'");
+				$query2 = mysqli_query($con, "UPDATE siswa SET kelas='$kelas',nama='$nama',agama='$agama',alamat='$alamat',ttl='$ttl',jenkel='$jenkel' WHERE nis='$nis'");
 
 				if ($query2){
-					$response = new emp();	
-                    $response->success = 1;					
-					$response->message = "Successfully Uploaded";
-		            die(json_encode($response));
-
-				} else {
-					$response = new emp();
-					$response->success = 0;
-	 			    $response->message = "nama  anda tidak anda";
-	 			    die(json_encode($response));
-				}
-				}else{
-					$query2 = mysqli_query($con, "UPDATE siswa SET foto='$tes',kelas='$kelas',nama='$nama',agama='$agama',alamat='$alamat',ttl='$ttl',jenkel='$jenkel' WHERE nis='$nis'");
-
-				if ($query2){
-					file_put_contents($path,base64_decode($image));
-					$response = new emp();	
-                    $response->success = 1;					
-					$response->message = "Successfully Uploaded";
-		            die(json_encode($response));
-
-				} else {
-					$response = new emp();
-					$response->success = 0;
-	 			    $response->message = "nama  anda tidak anda";
-	 			    die(json_encode($response));
-				}
-				}
-
-
-
 				
+					$response = new emp();	
+                    $response->success = 1;					
+					$response->message = "Successfully Uploaded";
+		            die(json_encode($response));
+
+				} else {
+					$response = new emp();
+					$response->success = 0;
+	 			    $response->message = "nama  anda tidak anda";
+	 			    die(json_encode($response));
+				}
 			}
 	}	
 	

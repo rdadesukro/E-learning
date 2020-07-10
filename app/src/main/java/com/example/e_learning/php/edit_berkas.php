@@ -17,13 +17,7 @@ require_once('dbConnect.php');
 		
 		
 
-$query1 = "INSERT INTO materi (
-		id,
-		id_mapel,
-		bab,
-		pdf_url,
-		pdf_icon)
-		VALUES (NULL,'$id_mapel','$bab','$tes','')";
+$query1 = "UPDATE materi SET bab='$bab',pdf_url='$tes'  WHERE id='$id_mapel'";
 
 	          
 		
