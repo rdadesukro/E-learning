@@ -80,15 +80,15 @@ public class MyAdapter_nilai extends RecyclerView.Adapter<MyHolder_data> {
     }
     private void openDetailActivity(String id, String mapel,String foto)
     {
-        Intent i=new Intent(c, menu_materi_A.class);
-
-        //PACK DATA
-        i.putExtra("id",id);
-        i.putExtra("mapel",mapel);
-
-        i.putExtra("foto",foto);
-
-        c.startActivity(i);
+//        Intent i=new Intent(c, menu_materi_A.class);
+//
+//        //PACK DATA
+//        i.putExtra("id",id);
+//        i.putExtra("mapel",mapel);
+//
+//        i.putExtra("foto",foto);
+//
+//        c.startActivity(i);
     }
 
 
