@@ -15,6 +15,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
  $PdfName = $_POST['name'];
   $mapel = $_POST['mapel'];
  $PdfInfo = pathinfo($_FILES['pdf']['name']);
+  $id_guru =  $_POST['id_guru'];
  
  $PdfFileExtension = $PdfInfo['extension'];
  $tes = GenerateFileNameUsingID() . '.' . $PdfFileExtension;
@@ -27,7 +28,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
  
  move_uploaded_file($_FILES['pdf']['tmp_name'],$PdfFileFinalPath);
  
- $InsertTableSQLQuery = "INSERT INTO materi (pdf_url,bab,id_mapel) VALUES ('$tes', '$PdfName', '$mapel') ;";
+ $InsertTableSQLQuery = "INSERT INTO materi (pdf_url,bab,id_mapel,id_guru) VALUES ('$tes', '$PdfName', '$mapel', '$id_guru') ;";
 
  mysqli_query($con,$InsertTableSQLQuery);
 

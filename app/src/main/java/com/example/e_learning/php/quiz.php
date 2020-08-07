@@ -50,7 +50,7 @@
 
 		// sesuiakan ip address laptop/pc atau URL server
 		$actualpath = "$path";
-		$num_rows = mysqli_num_rows(mysqli_query($con, "SELECT * FROM quiz WHERE nis='".$nis."'  and mapel='".$mapel."'"));
+		$num_rows = mysqli_num_rows(mysqli_query($con, "SELECT * FROM quiz WHERE nis='".$nis."'  and status='".$status."'"));
 		
 		
 	       if ($num_rows == 0){

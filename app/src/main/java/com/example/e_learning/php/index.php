@@ -22,12 +22,12 @@
 		die();
 	}
 	
-	$id_mapel=$_GET['id_mapel'];
-  
+	$id_guru=$_GET['id_guru'];
+  	$id_mapel=$_GET['id_mapel'];
 	
 	//creating a query
 	$stmt = $conn->prepare("SELECT  materi.id,materi.id_mapel,mapel.nama_mapel,materi.bab,materi.pdf_url,materi.pdf_icon 
-FROM materi,mapel WHERE materi.id_mapel=mapel.id_mapel AND materi.id_mapel='$id_mapel'");
+FROM materi,mapel WHERE materi.id_mapel=mapel.id_mapel AND materi.id_guru='$id_guru' and materi.id_mapel='$id_mapel' ");
 	
 	//executing the query 
 	$stmt->execute();

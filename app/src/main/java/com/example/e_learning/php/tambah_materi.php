@@ -6,6 +6,7 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
    // $syarat_value = addslashes(trim($_POST['syarat_value']));
 	$bab=addslashes(trim($_POST['bab']));
 	$id_mapel=addslashes(trim($_POST['id_mapel']));
+	$id_guru=addslashes(trim($_POST['id_guru']));
 	$random = random_word(20);
 	$file_path = "pdf/".$random;
 	$file_path2 = $random;
@@ -22,8 +23,9 @@ $query1 = "INSERT INTO materi (
 		id_mapel,
 		bab,
 		pdf_url,
-		pdf_icon)
-		VALUES (NULL,'$id_mapel','$bab','$tes','')";
+		pdf_icon,
+		id_guru)
+		VALUES (NULL,'$id_mapel','$bab','$tes','','$id_guru')";
 
 	          
 		
