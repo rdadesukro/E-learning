@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.ImageLoader;
@@ -23,13 +22,24 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.e_learning.app.AppConfig;
 import com.example.e_learning.app.AppController;
+import com.example.e_learning.objekdata.model_cek_quiz.Response_cek;
+import com.example.e_learning.objekdata.model_cek_quiz.ResultItem_cek;
+import com.example.e_learning.server.MyInterface;
+import com.example.e_learning.server.Retroserver_server;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class menu_quiz extends AppCompatActivity {
      CardView quiz1,quiz2;
@@ -59,7 +69,7 @@ public class menu_quiz extends AppCompatActivity {
     LocationManager locationManager;
     ImageLoader imageLoader;
     TextView lat, lng, txt_token, lvl;
-
+    private List<ResultItem_cek> data = new ArrayList<>();
     int success;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,173 +92,77 @@ public class menu_quiz extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                // mapel.setText("1");
-                if (sts.getText().equals("1")){
-                    Toast.makeText(getApplicationContext() ,"Anda Sudah Quiz", Toast.LENGTH_LONG).show();
-                }else {
-                    Intent intent = new Intent(getApplicationContext(), menu_quiz_1.class);
-                    Bundle b = new Bundle();
-                   // Toast.makeText(getApplicationContext() ,"Anda Sudah Quiz", Toast.LENGTH_LONG).show();
-                    //Menyisipkan tipe data String ke dalam obyek bundle
-                    b.putString("id", nis.getText().toString());
-                    b.putString("nama", nama.getText().toString());
-                    // b.putString("kls", txt_kls.getText().toString());
-                    // b.putString("vidio", txtvidio.getText().toString());
-                    intent.putExtras(b);
-                    startActivity(intent);
-                }
+                cek("1");
+
             }
         });
 
         quiz2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mapel.setText("2");
-                if (sts2.getText().equals("1")){
-                    Toast.makeText(getApplicationContext() ,"Anda Sudah Quiz", Toast.LENGTH_LONG).show();
+             cek("2");
+            }
+        });
+    }
+
+    void cek(final String quiz_tampung){
+        MyInterface api = Retroserver_server.getClient().create(MyInterface.class);
+        Call<Response_cek> call = api.cek_quiz(nis.getText().toString(),quiz_tampung);
+        call.enqueue(new Callback<Response_cek>() {
+            @Override
+            public void onResponse(Call<Response_cek> call, Response<Response_cek> response) {
+
+
+                //  final List<Response_cek> masalah_list = response.body().getResult();
+                data = response.body().getResult();
+
+
+
+                if (data.size()==0) {
+                    if (quiz_tampung.equals("1")){
+                        Intent intent = new Intent(getApplicationContext(), menu_quiz_1.class);
+                        Bundle b = new Bundle();
+                        // Toast.makeText(getApplicationContext() ,"Anda Sudah Quiz", Toast.LENGTH_LONG).show();
+                        //Menyisipkan tipe data String ke dalam obyek bundle
+                        b.putString("id", nis.getText().toString());
+                        b.putString("nama", nama.getText().toString());
+                        // b.putString("kls", txt_kls.getText().toString());
+                        // b.putString("vidio", txtvidio.getText().toString());
+                        intent.putExtras(b);
+                        startActivity(intent);
+                    }else {
+                        Intent intent = new Intent(getApplicationContext(), menu_quiz_2.class);
+                        Bundle b = new Bundle();
+                        // Toast.makeText(getApplicationContext() ,"Anda Sudah Quiz", Toast.LENGTH_LONG).show();
+                        //Menyisipkan tipe data String ke dalam obyek bundle
+                        b.putString("id", nis.getText().toString());
+                        b.putString("nama", nama.getText().toString());
+                        // b.putString("kls", txt_kls.getText().toString());
+                        // b.putString("vidio", txtvidio.getText().toString());
+                        intent.putExtras(b);
+                        startActivity(intent);
+                    }
+
                 }else {
-                    Intent intent = new Intent(getApplicationContext(), menu_quiz_2.class);
-                    Bundle b = new Bundle();
-                    // Toast.makeText(getApplicationContext() ,"Anda Sudah Quiz", Toast.LENGTH_LONG).show();
-                    //Menyisipkan tipe data String ke dalam obyek bundle
-                    b.putString("id", nis.getText().toString());
-                    b.putString("nama", nama.getText().toString());
-                    // b.putString("kls", txt_kls.getText().toString());
-                    // b.putString("vidio", txtvidio.getText().toString());
-                    intent.putExtras(b);
-                    startActivity(intent);
+                    Toast.makeText(menu_quiz.this, "Sudah Quiz", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Response_cek> call, Throwable t) {
+                t.printStackTrace();
+                if (t instanceof IOException) {
+
+
+                }
+                else {
+
+
                 }
             }
         });
-    }
 
-    private void sts() {
-
-
-        JsonArrayRequest req = new JsonArrayRequest(AppConfig.CEK+nis.getText()+ "&mapel=" +mapel.getText(),
-
-
-
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.d(TAG, response.toString());
-
-                        try {
-
-
-                            jsonResponse = "";
-
-
-
-                            for (int i = 0; i < response.length(); i++) {
-
-                                JSONObject person = (JSONObject) response
-                                        .get(i);
-
-                                String nm = person.getString("status");
-
-
-
-                                sts.setText(nm);
-
-
-
-
-
-                            }
-
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(),
-                                    "Error: " + e.getMessage(),
-
-                                    Toast.LENGTH_LONG).show();
-                            Toast.makeText(getApplicationContext() ,"No Internet TESSS", Toast.LENGTH_LONG).show();
-
-
-                        }
-
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-
-                //  Toast.makeText(getApplicationContext() ,"DATA TIDAK ADA", Toast.LENGTH_LONG).show();
-
-
-            }
-        });
-
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(req);
-    }
-    private void simapan_sts2() {
-        //menampilkan progress dialog
-        final ProgressDialog loading = ProgressDialog.show(this, "Uploading...", "Please wait...", false, false);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConfig.sts2,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.e(TAG, "Response: " + response.toString());
-
-                        try {
-                            JSONObject jObj = new JSONObject(response);
-                            success = jObj.getInt(TAG_SUCCESS);
-
-                            if (success == 1) {
-                                Log.e("v Add", jObj.toString());
-
-                                //  Toast.makeText(menu_profil.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
-                                Toast.makeText(menu_quiz.this,"SUKSES SIMPAN NILAI",Toast.LENGTH_LONG).show();
-                                // Intent i = new Intent(menu_lapor_bencana.this, data_terkirim.class);
-                                //  startActivity(i);
-                                //tes();
-
-                            } else {
-                                Toast.makeText(menu_quiz.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        //menghilangkan progress dialog
-                        loading.dismiss();
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //menghilangkan progress dialog
-                        loading.dismiss();
-
-                        //menampilkan toast
-                        Toast.makeText(menu_quiz.this, error.getMessage().toString(), Toast.LENGTH_LONG).show();
-                        Log.e(TAG, error.getMessage().toString());
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() {
-                //membuat parameters
-                Map<String, String> params = new HashMap<String, String>();
-
-                //menambah parameter yang di kirim ke web servis
-                // params.put(KEY_IMAGE, getStringImage(decoded));
-                // params.put(KEY_ID, id1.getText().toString().trim());
-                params.put(KEY_NIS, nis.getText().toString().trim());
-                params.put(KEY_MAPEL1, mapel.getText().toString().trim());
-
-
-                //kembali ke parameters
-                Log.e(TAG, "" + params);
-                return params;
-            }
-        };
-
-        AppController.getInstance().addToRequestQueue(stringRequest, tag_json_obj);
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

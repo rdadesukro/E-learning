@@ -25,84 +25,85 @@ public class mapel_2 extends SQLiteOpenHelper {
 
 
         ContentValues values = new ContentValues();
-        values.put("soal", "Nama komponen AC (air conditioners) yang berputar menekan gas refrigerant sehingga temperaturnya meningkat adalah… ?");
-        values.put("pil_a", "Kondensor");
-        values.put("pil_b", "kompresor");
-        values.put("pil_c", "Refrigerant");
+        values.put("soal", ".Tune up engine adalah ");
+        values.put("pil_a", "Mengganti komponen engine, dari komponen imitasi diganti komponen orisinil agar tenaga engine lebih kuat");
+        values.put("pil_b", "Mengembalikan kinerja engine secara maksimal dengan memeriksa, menyetel, membersihkan dan mengganti komponen");
+        values.put("pil_c", "Mengembalikan dan meningkatkan kinerja engine dengan mengganti semua komponen engine");
         values.put("jwban", "1");
         //  values.put("img", R.drawable.sapi);
         db.insert("tbl_soal1", "soal", values);
 
-        values.put("soal", "Komponen AC yang berbentuk tabung dan ada kaca pengintai pada bagian atasnya adalah…?");
-        values.put("pil_a", "Dryer");
-        values.put("pil_b", "kondensor");
-        values.put("pil_c", "Evaporator");
-        values.put("jwban", "1");
+        values.put("soal", "Fungsi camshaft pada engine adalah ");
+        values.put("pil_a", "Menggerakkan katup – katup yang terdapat pada kepala silinder");
+        values.put("pil_b", "Menggerakan piston pada silinder");
+        values.put("pil_c", "Penerus putaran ke flywheel");
+        values.put("jwban", "0");
         //  values.put("img", R.drawable.hidup);
         db.insert("tbl_soal1", "soal", values);
 
-        values.put("soal", "Nama komponen AC yang berfungsi menyerap panas refrigerant dan mengubah gas refrigerant menjadi cairan adalah…?");
-        values.put("pil_a", "Kondensor");
-        values.put("pil_b", "kompresor");
-        values.put("pil_c", "Refrigeran");
+
+        values.put("soal", "Di bawah ini adalah termasuk 5 sistem pada engine");
+        values.put("pil_a", "Sistem penerangan dan wiring");
+        values.put("pil_b", "Sistem pengapian");
+        values.put("pil_c", "Sistem pendingin");
         values.put("jwban", "0");
         //  values.put("img", R.drawable.iakan);
         db.insert("tbl_soal1", "soal", values);
 
-        values.put("soal", "Zat cair yang terdapat di dalam system AC adalah…?");
-        values.put("pil_a", "Refrigeran");
-        values.put("pil_b", "Dryer");
-        values.put("pil_c", "kompresor");
-        values.put("jwban", "0");
+        values.put("soal", "Di bawah ini adalah fungsi piston, kecuali");
+        values.put("pil_a", "Menghisap dan mengkompresi udara pada motor diesel");
+        values.put("pil_b", "Menghisap dan mengkompresi udara pada motor bensin");
+        values.put("pil_c", "Sebagai pembentuk ruang bak");
+        values.put("jwban", "1");
         //  values.put("img", R.drawable.ramb);
         db.insert("tbl_soal1", "soal", values);
 
-        values.put("soal", "Alat yang berfungsi menyerap panas udara sehingga membuat udara menjadi digin adalah…?");
-        values.put("pil_a", "Refrigeran");
-        values.put("pil_b", "Dryer");
-        values.put("pil_c", "Evaporator");
-        values.put("jwban", "2");
+        values.put("soal", "Sumber arus listrik utama pada kendaraan adalah");
+        values.put("pil_a", "Accu");
+        values.put("pil_b", "Coil");
+        values.put("pil_c", "Rotor");
+        values.put("jwban", "0");
         // values.put("img", R.drawable.ayam);
         db.insert("tbl_soal1", "soal", values);
 
-        values.put("soal", "Urutan sirkulasi sistem AC yang benar adalah….?");
-        values.put("pil_a", "kompresor, kondensor, receiver, expansion valve, evaporator");
-        values.put("pil_b", "kompresor, receiver, kondensor, evaporator, expansion valve");
-        values.put("pil_c", "kompresor, evaporator ,expansion valve, receiver,kondensor");
-        values.put("jwban", "0");
+        values.put("soal", "Fungsi kumparan primer pada coil mobil adalah");
+        values.put("pil_a", "Membuat magnet permanen pada coil");
+        values.put("pil_b", "Membagi arus tegangan tinggi");
+        values.put("pil_c", "Mengatur lamanya platina menutup");
+        values.put("jwban", "1");
         //  values.put("img", R.drawable.tebu);
         db.insert("tbl_soal1", "soal", values);
 
-        values.put("soal", "Refriger yang berada antara evaporator dan kompresor adalah…?");
-        values.put("pil_a", "Cair");
-        values.put("pil_b", "Antara cair dan gas");
-        values.put("pil_c", "Gas");
-        values.put("jwban", "1");
+        values.put("soal", "RFungsi centrifugal governor advancer adalah");
+        values.put("pil_a", "Memajukan saat pengapian sesuai dengan putaran mesin");
+        values.put("pil_b", "Memajukan saat pengapian sesuai dengan beban mesin");
+        values.put("pil_c", "Membuat sudut dwell tepat");
+        values.put("jwban", "0");
         //  values.put("img", R.drawable.kelapa);
         db.insert("tbl_soal1", "soal", values);
 
-        values.put("soal", "Keadaan tekanan dan temperatur refriger pada kondensor adalah….??");
-        values.put("pil_a", "Sedang");
-        values.put("pil_b", "Renda");
-        values.put("pil_c", "Tinggi");
-        values.put("jwban", "2");
+        values.put("soal", "Setelah melewati kumparan primer arus pengapian mengalir ke");
+        values.put("pil_a", "Platina");
+        values.put("pil_b", "Kondeksor");
+        values.put("pil_c", "Busi");
+        values.put("jwban", "0");
         //  values.put("img", R.drawable.tikus);
         db.insert("tbl_soal1", "soal", values);
 
 
-        values.put("soal",  "Proses pendinginan refrigerant pada kondensor melalui…..?");
-        values.put("pil_a", "Gabungan antara air dan udara ");
-        values.put("pil_b", "pendinginan air");
-        values.put("pil_c", "Pendinginan udara");
-        values.put("jwban", "0");
+        values.put("soal",  "Yang terjadi pada saat platina menutup adalah");
+        values.put("pil_a", "Arus didistribusikan ke busi ");
+        values.put("pil_b", "Terjadi ground");
+        values.put("pil_c", "PArus masuk primer");
+        values.put("jwban", "2");
         // values.put("img", R.drawable.padi);
         db.insert("tbl_soal1", "soal", values);
 
-        values.put("soal", "Kaca pengintai pada receiver berfungsi untuk….?");
-        values.put("pil_a", "Melihat refrigeran");
-        values.put("pil_b", "Melihat jumlah refrigerant");
-        values.put("pil_c", "Melihat gelembung udarah yang ada pada refrigerant");
-        values.put("jwban", "0");
+        values.put("soal", "Kapan terjadi induksi arus pengapian");
+        values.put("pil_a", "Saat arus di fuse");
+        values.put("pil_b", "Saat platina membuka");
+        values.put("pil_c", "Saat arus sampai busi");
+        values.put("jwban", "2");
         //  values.put("img", R.drawable.burung);
         db.insert("tbl_soal1", "soal", values);
 

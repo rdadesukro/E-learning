@@ -238,9 +238,7 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <include
-        layout="@layout/relasi_menu_utama_tes"
-        />
+    <include layout="@layout/relasi_menu_utama_tes" />
 
 
 </android.support.design.widget.CoordinatorLayout>

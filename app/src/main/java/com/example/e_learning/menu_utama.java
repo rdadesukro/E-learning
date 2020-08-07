@@ -144,8 +144,8 @@ public class menu_utama extends AppCompatActivity {
             data();
             sts();
             sts2();
-            simapan_sts();
-            simapan_sts2();
+           // simapan_sts();
+           // simapan_sts2();
 
             btn_nilai.setVisibility(View.GONE);
         }
@@ -369,7 +369,7 @@ public class menu_utama extends AppCompatActivity {
         lvl.setText(level);
         if (lvl.getText().equals("siswa")){
             data();
-            simapan_sts();
+          //  simapan_sts();
             sts();
             btn_nilai.setVisibility(View.GONE);
         }

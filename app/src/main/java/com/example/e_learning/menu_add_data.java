@@ -161,6 +161,7 @@ public class menu_add_data extends AppCompatActivity {
                     Call<BaseResponse> sendbio = api.simpan_berkas(
                             bab1,
                             id_data,
+                            id_data,
                             body);
 
 

@@ -314,6 +314,7 @@ public class menu_mapel extends AppCompatActivity {
                         .addFileToUpload(PdfPathHolder, "pdf")
                         .addParameter("name", PdfNameHolder)
                         .addParameter("mapel", mapel)
+                        .addParameter("id_guru", mapel)
                         .setNotificationConfig(new UploadNotificationConfig())
                         .setMaxRetries(5)
                         .startUpload();

@@ -3,15 +3,18 @@ package com.example.e_learning.server;
 
 
 import com.example.e_learning.objekdata.BaseResponse;
+import com.example.e_learning.objekdata.model_cek_quiz.Response_cek;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Query;
 
 public interface MyInterface {
 
@@ -19,6 +22,12 @@ public interface MyInterface {
     @POST("baca.php")
     Call<BaseResponse> baca(
             @Field("id_permohonan") String id_permohonan);
+
+
+
+    @GET("cek_quiz.php")
+    Call<Response_cek> cek_quiz(@Query("nis") String nis,
+                                @Query("quiz") String quiz);
 
     @FormUrlEncoded
     @POST("matikan_notif.php")
@@ -42,6 +51,7 @@ public interface MyInterface {
     Call<BaseResponse> simpan_berkas(
             @Part("bab") RequestBody id_opd,
             @Part("id_mapel") RequestBody kategori,
+            @Part("id_guru") RequestBody id_guru,
             @Part MultipartBody.Part file);
 
     @Multipart
