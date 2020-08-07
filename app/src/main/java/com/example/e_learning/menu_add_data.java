@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -46,8 +47,16 @@ public class menu_add_data extends AppCompatActivity {
     Button simpan,select;
     Uri tempUri;
     File file;
+    Boolean session = false;
     String id_mapel;
+    SharedPreferences sharedpreferences;
+    public final static String TAG_userneme = "username";
+    public final static String TAG_ID = "nis";
+    public final static String TAG_level = "level";
+    public static final String my_shared_preferences = "my_shared_preferences";
     private static final int BUFFER_SIZE = 1024 * 2;
+    String id_guru;
+    public static final String session_status = "session_status";
     private static final String IMAGE_DIRECTORY = "/demonuts_upload_gallery";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +69,10 @@ public class menu_add_data extends AppCompatActivity {
         data1=   (EditText) findViewById(R.id.edit_file);
         simpan=   (Button) findViewById(R.id.btn_simpan);
         select=   (Button) findViewById(R.id.btn_select);
-
+        sharedpreferences = getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+        session = sharedpreferences.getBoolean(session_status, false);
+        id_guru = sharedpreferences.getString(TAG_ID, null);
+        Log.i("id_user", "onCreate: "+id_guru);
         select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,6 +152,7 @@ public class menu_add_data extends AppCompatActivity {
                     MyInterface api = Retroserver_server.getClient().create(MyInterface.class);
                     final RequestBody bab1 = createPartFromString(""+bab.getText().toString());
                     RequestBody id_data = createPartFromString(""+id_mapel);
+                    RequestBody guru_id = createPartFromString(""+id_guru);
 
 
                     RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
@@ -161,7 +174,7 @@ public class menu_add_data extends AppCompatActivity {
                     Call<BaseResponse> sendbio = api.simpan_berkas(
                             bab1,
                             id_data,
-                            id_data,
+                            guru_id,
                             body);
 
 

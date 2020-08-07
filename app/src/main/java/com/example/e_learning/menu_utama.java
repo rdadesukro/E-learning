@@ -139,6 +139,7 @@ public class menu_utama extends AppCompatActivity {
         txt_username.setText(username);
         lvl.setText(level);
         id_user.setText(id);
+        Log.i("id_user", "onCreate: "+id);
 
         if (lvl.getText().equals("siswa")){
             data();

@@ -94,6 +94,7 @@ public class menu_materi_A extends AppCompatActivity {
     FloatingActionButton add;
     String tag_json_obj = "json_obj_req";
     String id,level,username;
+    String id_guru;
     TextView id_apel,siswa;
 
     public static final String session_status = "session_status";
@@ -420,7 +421,7 @@ if (siswa.getText().equals("siswa")){
     Our HTTP Client
     */
     public class JSONDownloader {
-       private static final String PDF_SITE_URL1="http://192.168.56.1/e-learning/?id_mapel=";
+       private static final String PDF_SITE_URL1="http://192.168.56.1/e-learning/?id_guru=";
         private static final String PDF_SITE_URL2="http://192.168.56.1/e-learning/pdf/";
 
        String s= (String) id_apel.getText();
@@ -438,7 +439,7 @@ if (siswa.getText().equals("siswa")){
             final ArrayList<PDFDoc> pdfDocuments = new ArrayList<>();
             myProgressBar.setIndeterminate(true);
             myProgressBar.setVisibility(View.VISIBLE);
-            AndroidNetworking.get(PDF_SITE_URL1+id_apel.getText())
+            AndroidNetworking.get(PDF_SITE_URL1+id_guru+"&id_mapel="+id_apel.getText())
                     .setPriority(Priority.MEDIUM)
                     .build()
                     .getAsJSONArray(new JSONArrayRequestListener() {
@@ -504,7 +505,7 @@ if (siswa.getText().equals("siswa")){
      //   Toast.makeText(this, "UNSUCCESSFUL :  ERROR IS : "+level, Toast.LENGTH_LONG).show();
 
 
-
+        id_guru=id;
 
         add=   (FloatingActionButton) findViewById(R.id.btn_Add);
         if (level.equals("siswa")){
