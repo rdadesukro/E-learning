@@ -39,6 +39,7 @@ import android.widget.Toast;
 
 import com.example.e_learning.app.AppConfig;
 import com.example.e_learning.data_parser.Downloader_mapel;
+import com.example.e_learning.data_parser.Downloader_siswa;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
@@ -74,7 +75,7 @@ public class menu_mapel extends AppCompatActivity {
 
     // Pdf upload request code.
     public int PDF_REQ_CODE = 1;
-
+String mapel_new;
 
     Intent intent;
     Uri fileUri;
@@ -86,6 +87,8 @@ public class menu_mapel extends AppCompatActivity {
     int bitmap_size = 40; // image quality 1 - 100;
     int max_resolution_image = 800;
     FloatingActionButton add;
+    String level;
+
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +104,8 @@ public class menu_mapel extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle b = getIntent().getExtras();
         lvl.setText(b.getCharSequence("level"));
+        level= String.valueOf(b.getCharSequence("level"));
+      nis.setText(b.getCharSequence("id_mapel"));
 
 //        if (lvl.getText().equals("siswa")){
 //            add.setVisibility(View.GONE);
@@ -112,13 +117,26 @@ public class menu_mapel extends AppCompatActivity {
         sv= (SearchView) findViewById(R.id.sv);
         final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipelayout);
 
-        new Downloader_mapel( menu_mapel.this, AppConfig.mapel , rv, swipeRefreshLayout ).execute();
+        if (level.equals("siswa")){
+            new Downloader_mapel( menu_mapel.this, AppConfig.mapel_siswa , rv, swipeRefreshLayout ).execute();
+        }else {
+
+            new Downloader_mapel( menu_mapel.this, AppConfig.mapel+nis.getText() , rv, swipeRefreshLayout ).execute();
+        }
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                new Downloader_mapel( menu_mapel.this, AppConfig.mapel , rv, swipeRefreshLayout ).execute();
+
+                if (level.equals("siswa")){
+                    new Downloader_mapel( menu_mapel.this, AppConfig.mapel_siswa , rv, swipeRefreshLayout ).execute();
+                }else {
+
+                    new Downloader_mapel( menu_mapel.this, AppConfig.mapel+nis.getText() , rv, swipeRefreshLayout ).execute();
+                }
             }
         });
 
@@ -136,7 +154,12 @@ public class menu_mapel extends AppCompatActivity {
             @Override
             public void onRefresh() {
 
-                new Downloader_mapel( menu_mapel.this, AppConfig.mapel , rv, swipeRefreshLayout ).execute();
+                if (level.equals("siswa")){
+                    new Downloader_mapel( menu_mapel.this, AppConfig.mapel_siswa , rv, swipeRefreshLayout ).execute();
+                }else {
+
+                    new Downloader_mapel( menu_mapel.this, AppConfig.mapel+nis.getText() , rv, swipeRefreshLayout ).execute();
+                }
             }
         });
 

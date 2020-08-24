@@ -17,7 +17,8 @@ import com.example.e_learning.data_parser.Downloader_mapel;
 import com.example.e_learning.data_parser.Downloader_siswa;
 
 public class menu_siswa extends AppCompatActivity {
-    TextView nis;
+    TextView nis,kelas;
+    String level;
     SearchView sv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,8 @@ public class menu_siswa extends AppCompatActivity {
         if (getSupportActionBar()!=null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle b = getIntent().getExtras();
-//        nis.setText(b.getCharSequence("id"));
+        nis.setText(b.getCharSequence("kelas"));
+        level = String.valueOf(b.getCharSequence("level"));
 
         final RecyclerView rv = (RecyclerView) findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -39,13 +41,23 @@ public class menu_siswa extends AppCompatActivity {
         sv= (SearchView) findViewById(R.id.sv);
         final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipelayout);
 
-        new Downloader_siswa( menu_siswa.this, AppConfig.siswa , rv, swipeRefreshLayout ).execute();
+        if (level.equals("siswa")){
+            new Downloader_siswa( menu_siswa.this, AppConfig.siswa+nis.getText() , rv, swipeRefreshLayout ).execute();
+        }else {
+            new Downloader_siswa( menu_siswa.this, AppConfig.guru, rv, swipeRefreshLayout ).execute();
+        }
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                new Downloader_siswa( menu_siswa.this, AppConfig.siswa , rv, swipeRefreshLayout ).execute();
+                if (level.equals("siswa")){
+                    new Downloader_siswa( menu_siswa.this, AppConfig.siswa+nis.getText() , rv, swipeRefreshLayout ).execute();
+                }else {
+                    new Downloader_siswa( menu_siswa.this, AppConfig.guru, rv, swipeRefreshLayout ).execute();
+                }
             }
         });
 
@@ -53,7 +65,11 @@ public class menu_siswa extends AppCompatActivity {
             @Override
             public void onRefresh() {
 
-                new Downloader_siswa( menu_siswa.this, AppConfig.siswa , rv, swipeRefreshLayout ).execute();
+                if (level.equals("siswa")){
+                    new Downloader_siswa( menu_siswa.this, AppConfig.siswa+nis.getText() , rv, swipeRefreshLayout ).execute();
+                }else {
+                    new Downloader_siswa( menu_siswa.this, AppConfig.guru, rv, swipeRefreshLayout ).execute();
+                }
             }
         });
 

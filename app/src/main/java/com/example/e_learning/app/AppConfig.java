@@ -14,7 +14,8 @@ public class AppConfig {
 	public static final String LAPOR_BENCANA = "http://192.168.1.71/e-learning/lapor_bencana.php";
 	public static final String BERITA = "http://192.168.1.71/e-learning/tampil_berita.php";
 	public static final String JML_BERITA = "http://192.168.1.71/e-learning/jml_berita.php";
-	public static final String mapel = "http://192.168.1.71/e-learning/mpl.php";
+	public static final String mapel = "http://192.168.1.71/e-learning/mpl.php?id_mapel=";
+	public static final String mapel_siswa = "http://192.168.1.71/e-learning/mapel_siswa.php";
 	public static final String BACA =  "http://192.168.1.71/e-learning/baca.php";
 	public static final String NILAI = "http://192.168.1.71/e-learning/tampil_nilai.php?nis=";
 	public static final String SPP = "http://192.168.1.71/e-learning/spp.php";
@@ -35,13 +36,14 @@ public class AppConfig {
 	public static final String PDF="http://192.168.1.71/e-learning/pdf.php";
 	public static final String PROFIL = "http://192.168.1.71/e-learning/profil.php?nis=";
 	public static final String PROFIL_GURU = "http://192.168.1.71/e-learning/profil_guru.php?id_guru=";
-	public static final String nilai = "http://192.168.1.71/e-learning/data_nilai.php?id_guru=";
+	public static final String nilai = "http://192.168.1.71/e-learning/data_nilai.php?mapel=";
 	public static final String FOTO = "http://192.168.1.71/e-learning/foto1.php";
 	public static final String EMAIL = "http://192.168.1.71/e-learning/email.php";
 	public static final String quiz = "http://192.168.1.71/e-learning/quiz.php";
 	public static final String sts = "http://192.168.1.71/e-learning/sts.php";
 	public static final String sts2 = "http://192.168.1.71/e-learning/sts2.php";
-	public static final String siswa = "http://192.168.1.71/e-learning/siswa.php";
+	public static final String siswa = "http://192.168.1.71/e-learning/siswa.php?kelas=";
+	public static final String guru = "http://192.168.1.71/e-learning/guru.php";
 	public static final String EDIT_PROFIL = "http://192.168.1.71/e-learning/edit_profil.php";
 
 	public static final String TAG_SUCCESS = "success";

@@ -497,7 +497,7 @@ public class menu_quiz_1 extends AppCompatActivity {
                 // params.put(KEY_ID, id1.getText().toString().trim());
                 params.put(KEY_NIS, txtnis.getText().toString().trim());
                 params.put(KEY_NILAI, nilai.getText().toString().trim());
-                params.put(KEY_MAPEL, mapel.getText().toString().trim());
+                params.put(KEY_MAPEL, "1");
                 params.put(KEY_STATUS, "1");
                 params.put(KEY_GURU, id_guru.getText().toString().trim());
 

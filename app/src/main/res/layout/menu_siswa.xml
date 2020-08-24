@@ -62,6 +62,16 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 tools:text="NIS" />
+            <TextView
+                android:id="@+id/txt_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:textColor="#000"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="NIS" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
 

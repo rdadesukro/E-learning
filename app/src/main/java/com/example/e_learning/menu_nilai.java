@@ -81,6 +81,9 @@ public class menu_nilai extends AppCompatActivity {
         username = sharedpreferences.getString(TAG_userneme, null);
         level = sharedpreferences.getString(TAG_level, null);
         id_guru = (TextView)  findViewById(R.id.txt_id_guru);
+        nis=   (TextView) findViewById(R.id.txt_nama);
+        Bundle b = getIntent().getExtras();
+        nis.setText(b.getCharSequence("id_mapel"));
        // id_user.setText(id);
         id_guru.setText(id);
 //        lvl.setText(level);
@@ -90,13 +93,13 @@ public class menu_nilai extends AppCompatActivity {
         sv= (SearchView) findViewById(R.id.sv);
         final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipelayout);
 
-        new Downloader_nilai( menu_nilai.this, AppConfig.nilai+id_guru.getText() , rv, swipeRefreshLayout ).execute();
+        new Downloader_nilai( menu_nilai.this, AppConfig.nilai+nis.getText() , rv, swipeRefreshLayout ).execute();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                new Downloader_nilai( menu_nilai.this, AppConfig.nilai+id_guru.getText() , rv, swipeRefreshLayout ).execute();
+                new Downloader_nilai( menu_nilai.this, AppConfig.nilai+nis.getText() , rv, swipeRefreshLayout ).execute();
             }
         });
 
@@ -106,7 +109,7 @@ public class menu_nilai extends AppCompatActivity {
             @Override
             public void onRefresh() {
 
-                new Downloader_nilai( menu_nilai.this, AppConfig.nilai+id_guru.getText() , rv, swipeRefreshLayout ).execute();
+                new Downloader_nilai( menu_nilai.this, AppConfig.nilai+nis.getText() , rv, swipeRefreshLayout ).execute();
             }
         });
 

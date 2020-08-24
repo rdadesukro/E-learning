@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class mapel_1 extends SQLiteOpenHelper {
-    final static String DB_NAME = "db_bio";
+    final static String DB_NAME = "db_1";
 
     public mapel_1(Context context) {
         super(context, DB_NAME, null, 1);

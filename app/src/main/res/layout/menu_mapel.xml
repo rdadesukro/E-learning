@@ -73,7 +73,6 @@
                 android:textColor="#000"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:visibility="gone"
                 tools:text="NIS" />
 
         </android.support.design.widget.CollapsingToolbarLayout>

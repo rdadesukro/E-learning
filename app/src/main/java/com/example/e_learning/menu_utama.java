@@ -83,6 +83,7 @@ public class menu_utama extends AppCompatActivity {
 
     String goolgeMap = "com.google.android.apps.maps";
     Uri gmmIntentUri;
+    String id_mapel;
     ImageView iv;
     Animation anim;
     LinearLayout sliderDotspanel;
@@ -102,6 +103,7 @@ public class menu_utama extends AppCompatActivity {
     ImageView foto;
     String url = null;
     NetworkImageView previewImage;
+    String kelas;
 
 
 
@@ -140,7 +142,11 @@ public class menu_utama extends AppCompatActivity {
         lvl.setText(level);
         id_user.setText(id);
         Log.i("id_user", "onCreate: "+id);
+        data_guru_new();
+        data_siswa();
+        data_guru();
 
+        Log.i("id_mapel", "onCreate: "+id_mapel+kelas);
         if (lvl.getText().equals("siswa")){
             data();
             sts();
@@ -256,6 +262,12 @@ public class menu_utama extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), menu_siswa.class);
+                Bundle b = new Bundle();
+
+                //Menyisipkan tipe data String ke dalam obyek bundle
+                b.putString("kelas", kelas);
+                b.putString("level", lvl.getText().toString());
+                intent.putExtras(b);
                 startActivity(intent);
             }
         });
@@ -264,8 +276,10 @@ public class menu_utama extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), menu_nilai.class);
-                Bundle b = new Bundle();
 
+                Bundle b = new Bundle();
+                b.putString("id_mapel", id_mapel);
+                intent.putExtras(b);
                 startActivity(intent);
             }
         });
@@ -278,6 +292,7 @@ public class menu_utama extends AppCompatActivity {
 
                 //Menyisipkan tipe data String ke dalam obyek bundle
                 b.putString("level", lvl.getText().toString());
+                b.putString("id_mapel", id_mapel);
                 // b.putString("vidio", txtvidio.getText().toString());
                 intent.putExtras(b);
                 startActivity(intent);
@@ -376,11 +391,15 @@ public class menu_utama extends AppCompatActivity {
         }
         if (lvl.getText().equals("guru")){
             data_guru();
+            //data_guru_new();
             //prof.setVisibility(View.GONE);
             btn_quiz.setVisibility(View.GONE);
         }
 
        // data();
+        data_siswa();
+        data_guru();
+        data_guru_new();
         foto();
     }
 
@@ -481,6 +500,78 @@ public class menu_utama extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(req);
     }
 
+    private void data_guru_new() {
+
+
+        JsonArrayRequest req = new JsonArrayRequest(AppConfig.PROFIL_GURU+id_user.getText(),
+
+
+
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d(TAG, response.toString());
+
+                        try {
+
+
+                            jsonResponse = "";
+
+
+
+                            for (int i = 0; i < response.length(); i++) {
+
+                                JSONObject person = (JSONObject) response
+                                        .get(i);
+
+                                String nm = person.getString("nama");
+                                String kl = person.getString("nama_mapel");
+                                String ttl1 = person.getString("ttl");
+                                String agm = person.getString("agama");
+                                String jk = person.getString("jk");
+                                String alm = person.getString("alamat");
+                               // String alm = person.getString("id_mapel");
+                                id_mapel = person.getString("id_mapel");
+                                Toast.makeText(menu_utama.this, ""+nm+id_mapel, Toast.LENGTH_SHORT).show();
+
+
+
+
+
+
+
+                            }
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(),
+                                    "Error: " + e.getMessage(),
+
+                                    Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext() ,"No Internet TESSS", Toast.LENGTH_LONG).show();
+
+
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+                //  Toast.makeText(getApplicationContext() ,"DATA TIDAK ADA", Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(req);
+    }
+
     private void data_guru() {
 
 
@@ -508,7 +599,8 @@ public class menu_utama extends AppCompatActivity {
 
 
                                 new DownloadImagesTask().execute("http://192.168.56.1/e-learning/foto/"+person.getString("foto"));
-
+                                // id_mapel = person.getString("id_mapel");
+                                id_mapel = person.getString("id_mapel");
 
 
 
@@ -872,6 +964,74 @@ public class menu_utama extends AppCompatActivity {
         AppController.getInstance().addToRequestQueue(stringRequest, tag_json_obj);
     }
 
+    private void data_siswa() {
 
+
+        JsonArrayRequest req = new JsonArrayRequest(AppConfig.PROFIL+id_user.getText(),
+
+
+
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.d(TAG, response.toString());
+
+                        try {
+
+
+                            jsonResponse = "";
+
+
+
+                            for (int i = 0; i < response.length(); i++) {
+
+                                JSONObject person = (JSONObject) response
+                                        .get(i);
+
+                                String nm = person.getString("nama");
+                                String kl = person.getString("kelas");
+                                String ttl1 = person.getString("ttl");
+                                String agm = person.getString("agama");
+                                String jk = person.getString("jenkel");
+                                String alm = person.getString("alamat");
+
+                                kelas=kl;
+
+
+
+
+
+
+                            }
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(),
+                                    "Error: " + e.getMessage(),
+
+                                    Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext() ,"No Internet TESSS", Toast.LENGTH_LONG).show();
+
+
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+                //  Toast.makeText(getApplicationContext() ,"DATA TIDAK ADA", Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(req);
+    }
 
 }

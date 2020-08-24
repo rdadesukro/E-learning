@@ -78,7 +78,7 @@ public class menu_profil extends AppCompatActivity {
     ImageView prof;
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
-   TextView t_foto;
+   TextView t_foto,textView9;
     String url = null;
     TextView ganti;
     NetworkImageView previewImage;
@@ -97,7 +97,9 @@ public class menu_profil extends AppCompatActivity {
         lvl=(TextView) findViewById(R.id.txt_level);
         ttl = (TextView) findViewById(R.id.txt_ttl);
         ganti = (TextView) findViewById(R.id.txt_ganti);
+        textView9 = (TextView) findViewById(R.id.textView9);
         foto = (ImageView) findViewById(R.id.profile_image);
+
         t_foto = (TextView) findViewById(R.id.txt_foto);
         kls = (TextView) findViewById(R.id.txt_nilai);
         add=   (FloatingActionButton) findViewById(R.id.btn_Add);
@@ -113,6 +115,7 @@ public class menu_profil extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         nis.setText(b.getCharSequence("id"));
         if (lvl.getText().equals("guru")){
+            textView9.setText("NIP");
             data_guru();
             ganti.setText("Mapel");
           //  add.setVisibility(View.GONE);
