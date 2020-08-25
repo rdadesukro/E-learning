@@ -14,7 +14,7 @@ if(mysqli_connect_error($con))
 }
 
 $id_guru=$_GET['id_guru'];
-$sql="SELECT guru.id_guru,guru.nama,guru.ttl,guru.jk,guru.agama,guru.alamat,guru.foto,mapel.nama_mapel FROM guru,mapel 
+$sql="SELECT guru.id_guru,guru.nama,guru.ttl,guru.jk,guru.agama,guru.alamat,guru.foto,mapel.nama_mapel,guru.id_mapel FROM guru,mapel 
 WHERE mapel.id_mapel=guru.id_mapel and guru.id_guru='$id_guru'";
 $query=mysqli_query($con,$sql);
 if($query)

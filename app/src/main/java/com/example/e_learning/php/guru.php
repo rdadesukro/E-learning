@@ -13,8 +13,8 @@ if(mysqli_connect_error($con))
 	echo "Failed to Connect to Database ".mysqli_connect_error();
 }
 
-$kelas=$_GET['kelas'];
-$sql="SELECT * FROM   siswa WHERE kelas= '".$kelas."'";
+
+$sql="SELECT * FROM   siswa";
 
 
 $result=mysqli_query($con,$sql);
